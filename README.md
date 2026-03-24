@@ -2,35 +2,93 @@
 
 A deep neural network that predicts student loan repayment success — built with TensorFlow/Keras to classify borrower outcomes based on financial and academic features.
 
+---
+
 ## Overview
 
-This model helps identify which borrowers are most likely to successfully repay student loans, supporting risk assessment in educational lending. Using a multi-layer neural network trained on borrower profile data, it outputs a binary repayment prediction with 75.5% accuracy.
+This project applies binary classification using a feedforward neural network to predict whether a student borrower will successfully repay their loan. The model is trained on 11 borrower features including credit history, financial aid metrics, and academic standing, achieving 75.5% accuracy on held-out test data.
+
+---
 
 ## Model Architecture
 
-Input layer (11 features) -> Dense(6, relu) -> Dense(3, relu) -> Dense(1, sigmoid)
+```
+Input Layer  →  11 features
+Dense(6, relu)
+Dense(3, relu)
+Dense(1, sigmoid)  →  Binary output (repay / default)
+```
 
-- Input: 11 borrower features (credit ranking, financial aid history, GPA, etc.)
-- Two hidden layers with ReLU activation
-- Output layer with sigmoid for binary classification
-- Optimizer: Adam | Loss: binary_crossentropy
+- **Activation:** ReLU in hidden layers; Sigmoid for binary output
+- **Optimizer:** Adam
+- **Loss function:** Binary cross-entropy
+- **Train/test split:** 80% / 20%
+
+---
+
+## Input Features
+
+The model uses 11 borrower characteristics:
+- Credit ranking
+- Financial aid history
+- GPA
+- Additional financial and academic indicators
+
+---
 
 ## Performance
 
-- Test Accuracy: **75.5%**
+| Metric | Value |
+|---|---|
+| Test accuracy | **75.5%** |
+| Output type | Binary classification |
+
+---
+
+## Tech Stack
+
+| Component | Tool |
+|---|---|
+| Deep learning | TensorFlow / Keras |
+| Data preprocessing | scikit-learn, pandas |
+| Model export | `.keras` file format |
+| Language | Python |
+
+---
 
 ## Methodology
 
-1. Preprocessed and scaled borrower feature data
-2. Split into train/test sets (80/20)
-3. Built sequential Keras model; tuned layer sizes and activation functions
-4. Evaluated on held-out test set; exported model as .keras file
+1. Load and explore the student loan dataset
+2. Preprocess features: scale numerical inputs, encode categoricals
+3. Split into 80/20 train/test sets
+4. Build a sequential Keras model with two hidden layers
+5. Train with Adam optimizer and binary cross-entropy loss
+6. Evaluate on test set; export trained model as `.keras` file
 
-## Stack
+---
 
-Python | TensorFlow | Keras | pandas | scikit-learn
+## Repository Structure
 
-## Usage
+```
+student-loan-predictor/
+├── student_loans_with_deep_learning.ipynb   # Model training & evaluation
+└── README.md
+```
 
-Run: pip install -r requirements.txt
-Then: jupyter notebook student_loans_with_deep_learning.ipynb
+---
+
+## Outcomes
+
+- Achieved **75.5% test accuracy** on student loan repayment classification
+- Demonstrated a compact, 3-layer neural network architecture suitable for structured financial data
+- Exported trained model for potential deployment or further fine-tuning
+- Established a reproducible pipeline from raw borrower data through training to evaluation
+
+---
+
+## Getting Started
+
+```bash
+pip install tensorflow scikit-learn pandas
+jupyter notebook student_loans_with_deep_learning.ipynb
+```
